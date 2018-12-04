@@ -1,0 +1,15 @@
+#Calculator App
+### Completed Critiera
+- Basic React UI with event handling and display
+- Basic Memory Functions
+- Testing for Reducers and Actions
+
+### Incompleted Criteria
+- Basic calculator functionality (+, -, /, *, =)
+- React UI Testing
+
+### Future Plans
+- Implement a queue data type for recording user inputs
+- Consider implementing [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) [(npm)](https://www.npmjs.com/package/reverse-polish-notation) to handle order of operations and avoid using js eval.
+- Improve styling
+- Use Enzyme to "mount" UI components for testing

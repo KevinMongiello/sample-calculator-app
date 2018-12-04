@@ -1,0 +1,63 @@
+html, body, #app {
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculator {
+  box-shadow: 0 4px rgba(0, 0, 0, 0.4);
+  background-color: lightblue;
+  padding: 1rem;
+}
+
+.top {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.clear {
+  flex-basis: 1;
+}
+
+.screen {
+  flex-basis: 3;
+  width: 75%;
+  height: 2rem;
+  border: 1px solid #ddd;
+  margin-bottom: 0.5rem;
+  box-shadow: inset 0 2px #777;
+  text-align: right;
+  line-height: 2rem;
+  background-color: #fafafa;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+}
+
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.keys span, .clear {
+  width: calc(25% - 7px);
+  text-align: center;
+  line-height: 2rem;
+  margin: 0 5px 5px 0;
+  border: 1px solid #ddd;
+  transition: 200ms;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.3);
+  &.operator {
+    margin-right: 0;
+  }
+  &:hover {
+    background-color: yellow;
+  }
+}
