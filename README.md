@@ -31,3 +31,6 @@ Run Test suites
 - Consider implementing [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) [(npm)](https://www.npmjs.com/package/reverse-polish-notation) to handle order of operations and avoid using js eval.
 - Improve styling
 - Use Enzyme to "mount" UI components for testing
+
+### Notes
+I used Corey House's [React-Slingshot](https://github.com/coryhouse/react-slingshot) bootstrap for the react/redux boilerplate.
