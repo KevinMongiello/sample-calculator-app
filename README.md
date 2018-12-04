@@ -13,7 +13,7 @@ Start local server
 
 `npm start`
 
-Run Test suites
+Run test suites
 
 `npm test`
 

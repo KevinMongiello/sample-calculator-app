@@ -29,16 +29,6 @@ export default function calculator(state = initialState, action) {
 
       return newState;
 
-    case ADD:
-      newState = objectAssign({}, state);
-
-      return newState;
-
-    case SUBTRACT:
-      newState = objectAssign({}, state);
-
-      return newState;
-
     case CLEAR:
       newState = objectAssign({}, state, { display: "0", value: "" });
 
@@ -64,7 +54,6 @@ export default function calculator(state = initialState, action) {
 
       return newState;
     }
-
 
     case SUBTRACT_MEMORY: {
       const { memory, value } = state;
