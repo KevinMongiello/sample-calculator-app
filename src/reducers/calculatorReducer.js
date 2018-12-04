@@ -19,7 +19,7 @@ export default function calculator(state = initialState, action) {
     case SET_NUMBER:
       newState = objectAssign({}, state, {
         value: (state.value + action.num).toString(),
-        operator: "",
+        operation: "",
       });
 
       return newState;

@@ -1,4 +1,22 @@
 #Calculator App
+### Local Demo
+
+Clone the repo
+
+`git clone https://github.com/KevinMongiello/sample-calculator-app.git`
+
+Install dependencies
+
+`npm i`
+
+Start local server
+
+`npm start`
+
+Run Test suites
+
+`npm test`
+
 ### Completed Critiera
 - Basic React UI with event handling and display
 - Basic Memory Functions
