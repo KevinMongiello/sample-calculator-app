@@ -24,23 +24,18 @@ export default function calculator(state = initialState, action) {
       const currentInput = state.userInput;
       const currentValue = state.value;
       const newInput = action.input;
-      const shouldAppendInputs = isNum(currentValue) && isNum(newInput) || newInput === ".";
 
-      if (shouldAppendInputs) {
+      const shouldAppendInput = (isNum(currentValue) && isNum(newInput)) || newInput === ".";
+      const shouldAddToStack = (currentValue && isOperator(newInput)) || (isOperator(currentValue) && isNum(newInput));
+      const shouldAssignInput = (isOperator(currentInput) && isOperator(newInput)) || !currentInput
+
+      if (shouldAppendInput) {
         newState.userInput = currentInput + newInput;
-
-      } else if (currentValue && isOperator(newInput)) {
+      } else if (shouldAddToStack) {
         newState.userInputs = [...newState.userInputs, currentValue];
         newState.userInput = newInput;
-
-      } else if (isOperator(currentInput) && isNum(newInput)) {
-
-        newState.userInputs = [...newState.userInputs, currentInput];
+      } else if (shouldAssignInput) {
         newState.userInput = newInput;
-
-      } else if (isOperator(currentInput) && isOperator(newInput) || !currentInput) {
-        newState.userInput = newInput;
-
       }
 
       newState.value = newState.userInput;
