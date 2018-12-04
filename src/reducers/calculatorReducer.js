@@ -82,6 +82,7 @@ export default function calculator(state = initialState, action) {
       if (!state.userInputs[0]) {
         return state;
       }
+
       const newValue = isNum(state.userInput) ?
         calculate([...state.userInputs, state.userInput]) :
         calculate(state.userInputs); // disregard trailing operators.

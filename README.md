@@ -21,16 +21,17 @@ Run test suites
 - Basic React UI with event handling and display
 - Basic Memory Functions
 - Testing for Reducers and Actions
+- Basic calculator functionality (+, -, /, *, =)
+- Decimal Support
 
 ### Incompleted Criteria
-- Basic calculator functionality (+, -, /, *, =)
 - React UI Testing
+- Stress testing & Edge Case Testing
 
 ### Future Plans
-- Implement an array-like data type for recording user inputs
-- Consider implementing [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) [(npm)](https://www.npmjs.com/package/reverse-polish-notation) to handle order of operations and avoid using js eval.
-- Improve styling
 - Use Enzyme to "mount" UI components for testing
+- Extend reducer testing
+- Improve styling
 
 ### Notes
 I used Corey House's [React-Slingshot](https://github.com/coryhouse/react-slingshot) bootstrap for the react/redux boilerplate.
