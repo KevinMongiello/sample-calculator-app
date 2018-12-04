@@ -5,7 +5,7 @@ describe('setNumber action', () => {
   it('should have a "num" payload', () => {
     const num = "1"
     const expectedAction = {
-      type: types.SET_NUMBER,
+      type: types.SET_USER_INPUT,
       num
     }
     expect(actions.setNumber(num)).toEqual(expectedAction)

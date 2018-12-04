@@ -3,11 +3,9 @@ import { func, string } from 'prop-types';
 
 const Calculator = ({
   value,
-  display,
-  operator,
+  userInput,
   onClick,
   onClickEquals,
-  onClickOperator,
   onRecallMemory,
   onAddMemory,
   onSubtractMemory,
@@ -19,7 +17,7 @@ const Calculator = ({
     <div id="calculator">
       <div className="top">
         <span className="clear" onClick={onClear}>C</span>
-        <div className="screen">{operator || value || display}</div>
+        <div className="screen">{userInput || value}</div>
       </div>
       <div className="keys">
         <span onClick={onRecallMemory}>MR</span>
@@ -29,19 +27,19 @@ const Calculator = ({
         <span onClick={onClick}>7</span>
         <span onClick={onClick}>8</span>
         <span onClick={onClick}>9</span>
-        <span onClick={onClickOperator} className="operator">+</span>
+        <span onClick={onClick} className="operator">+</span>
         <span onClick={onClick}>4</span>
         <span onClick={onClick}>5</span>
         <span onClick={onClick}>6</span>
-        <span onClick={onClickOperator} className="operator">-</span>
+        <span onClick={onClick} className="operator">-</span>
         <span onClick={onClick}>1</span>
         <span onClick={onClick}>2</span>
         <span onClick={onClick}>3</span>
-        <span onClick={onClickOperator} className="operator">x</span>
+        <span onClick={onClick} className="operator">x</span>
         <span onClick={onClick}>0</span>
         <span onClick={onClick}>.</span>
         <span onClick={onClickEquals}>=</span>
-        <span onClick={onClickOperator} className="operator">/</span>
+        <span onClick={onClick} className="operator">/</span>
       </div>
     </div>
   </div>
@@ -49,7 +47,7 @@ const Calculator = ({
 
 Calculator.propTypes = {
   onClick: func.isRequired,
-  display: string.isRequired,
+  userInput: string.isRequired,
   value: string.isRequired,
   onClickEquals: func.isRequired,
   onClickOperator: func.isRequired,

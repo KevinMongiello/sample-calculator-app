@@ -1,6 +1,6 @@
 export default {
-  display: "0",
-  operation: "",
-  memory: "0",
-  value: "",
+  userInput: "",
+  value: 0,
+  userInputs: [],
+  memory: 0,
 }

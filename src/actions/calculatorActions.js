@@ -1,27 +1,17 @@
 import * as types from '../constants/actionTypes';
 
-export function setNumber(num) {
+export function setUserInput(input) {
   return {
-    type: types.SET_NUMBER,
-    num
+    type: types.SET_USER_INPUT,
+    input
   };
 }
 
-export function setOperator(operator) {
+export function calculate() {
   return {
-    type: types.SET_OPERATOR,
-    operator
+    type: types.CALCULATE
   };
 }
-
-
-// TODO
-// export function calculate() {
-//   return {
-//     type: types.CALCULATE,
-//     num
-//   };
-// }
 
 // TODO
 // export function add(num1, num2) {

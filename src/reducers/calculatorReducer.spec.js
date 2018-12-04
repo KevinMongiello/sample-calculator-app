@@ -1,5 +1,5 @@
 import {
-  SET_NUMBER,
+  SET_USER_INPUT,
   CLEAR,
   RECALL_MEMORY,
   ADD_MEMORY,
@@ -23,7 +23,7 @@ describe('calculator reducer', () => {
   it('inputs a number', () => {
     expect(
       reducer(initialState, {
-        type: SET_NUMBER,
+        type: SET_USER_INPUT,
         num: 5
       })
     ).toEqual(
