@@ -22,19 +22,28 @@ export default function calculator(state = initialState, action) {
       newState = objectAssign({}, state);
 
       const currentInput = state.userInput;
+      const currentValue = state.value;
       const newInput = action.input;
+      const shouldAppendInputs = isNum(currentValue) && isNum(newInput) || newInput === ".";
 
-      if (isNum(currentInput) && isNum(newInput)) {
-        newState.userInput = currentInput + newInput; // Add strings together
-      } else if (isNum(currentInput) && isOperator(newInput)) {
-        newState.userInputs = [...newState.userInputs, Number(currentInput)];
+      if (shouldAppendInputs) {
+        newState.userInput = currentInput + newInput;
+
+      } else if (currentValue && isOperator(newInput)) {
+        newState.userInputs = [...newState.userInputs, currentValue];
         newState.userInput = newInput;
+
       } else if (isOperator(currentInput) && isNum(newInput)) {
+
         newState.userInputs = [...newState.userInputs, currentInput];
         newState.userInput = newInput;
-      } else if (isOperator(currentInput) && isOperator(newInput)) {
+
+      } else if (isOperator(currentInput) && isOperator(newInput) || !currentInput) {
         newState.userInput = newInput;
+
       }
+
+      newState.value = newState.userInput;
 
       return newState;
     }
@@ -75,7 +84,13 @@ export default function calculator(state = initialState, action) {
       return newState;
 
     case CALCULATE: {
-      const newValue = calculate([...state.userInputs, Number(state.userInput)]);
+      if (!state.userInputs[0]) {
+        return state;
+      }
+      const newValue = isNum(state.userInput) ?
+        calculate([...state.userInputs, state.userInput]) :
+        calculate(state.userInputs); // disregard trailing operators.
+
       const newState = objectAssign({}, state, { userInput: "", value: newValue, userInputs: [] });
 
       return newState;

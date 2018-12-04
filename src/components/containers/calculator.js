@@ -22,7 +22,6 @@ export class CalculatorContainer extends React.Component {
     this.props.actions.clear();
   }
 
-
   onRecallMemory = () => {
     this.props.actions.recallMemory();
   }

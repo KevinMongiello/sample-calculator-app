@@ -8,7 +8,7 @@ html, body, #app {
 }
 
 #calculator {
-  box-shadow: 0 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px rgba(0, 0, 0, 0.4);
   background-color: lightblue;
   padding: 1rem;
 }
@@ -47,12 +47,12 @@ html, body, #app {
   width: calc(25% - 7px);
   text-align: center;
   line-height: 2rem;
-  margin: 0 5px 5px 0;
+  margin: 0 5px 10px 0;
   border: 1px solid #ddd;
   transition: 200ms;
   cursor: pointer;
   user-select: none;
-  box-shadow: 0 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px rgba(0, 0, 0, 0.25);
   &.operator {
     margin-right: 0;
   }
