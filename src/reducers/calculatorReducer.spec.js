@@ -10,9 +10,10 @@ import initialState from "./initialState";
 import reducer from './calculatorReducer';
 
 const mockState = {
+  userInput: "4",
+  value: "4",
   memory: "10",
-  display: "4",
-  value: "4"
+  userInputs: [],
 };
 
 describe('calculator reducer', () => {
@@ -24,10 +25,10 @@ describe('calculator reducer', () => {
     expect(
       reducer(initialState, {
         type: SET_USER_INPUT,
-        num: 5
+        input: 5
       })
     ).toEqual(
-      { ...initialState, value: "5"}
+      { ...initialState, value: "5", userInput: "5"}
     )
   })
 
@@ -39,8 +40,9 @@ describe('calculator reducer', () => {
     ).toEqual(
       {
         memory: "10",
-        display: "0",
-        value: ""
+        userInput: "",
+        value: "0",
+        userInputs: []
       }
     )
   })

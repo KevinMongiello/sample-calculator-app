@@ -1,14 +1,14 @@
 import * as actions from './calculatorActions';
 import * as types from '../constants/actionTypes';
 
-describe('setNumber action', () => {
+describe('setUserInput action', () => {
   it('should have a "num" payload', () => {
-    const num = "1"
+    const input = "1"
     const expectedAction = {
       type: types.SET_USER_INPUT,
-      num
+      input
     }
-    expect(actions.setNumber(num)).toEqual(expectedAction)
+    expect(actions.setUserInput(input)).toEqual(expectedAction)
   })
 })
 

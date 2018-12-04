@@ -44,7 +44,7 @@ export default function calculator(state = initialState, action) {
     }
 
     case CLEAR:
-      newState = objectAssign({}, state, { userInput: "", value: 0 });
+      newState = objectAssign({}, state, { userInput: "", value: "0", userInputs: [] });
 
       return newState;
 
