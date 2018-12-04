@@ -27,7 +27,7 @@ Run Test suites
 - React UI Testing
 
 ### Future Plans
-- Implement a queue data type for recording user inputs
+- Implement an array-like data type for recording user inputs
 - Consider implementing [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) [(npm)](https://www.npmjs.com/package/reverse-polish-notation) to handle order of operations and avoid using js eval.
 - Improve styling
 - Use Enzyme to "mount" UI components for testing
