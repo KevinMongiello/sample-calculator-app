@@ -1,4 +1,4 @@
-#Calculator App
+# Calculator App
 ### Local Demo
 
 Clone the repo
