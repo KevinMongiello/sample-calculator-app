@@ -1,98 +1,135 @@
 import {
-  SET_USER_INPUT,
-  CLEAR,
+  SET_NUMBER,
+  SET_OPERATOR,
+  CLEAR_INPUTS,
   RECALL_MEMORY,
-  SUBTRACT_MEMORY,
-  ADD_MEMORY,
   CLEAR_MEMORY,
+  ADD_TO_MEMORY,
+  SUBTRACT_FROM_MEMORY,
   CALCULATE,
 } from '../constants/actionTypes';
-import objectAssign from 'object-assign';
 import initialState from './initialState';
-import { calculate } from "../utils/calculate";
-
-const isOperator = (input) => /[+-/x]/.test(input);
-const isNum = (input) => !isNaN(Number(input));
 
 export default function calculator(state = initialState, action) {
   let newState;
+  let memOp;
 
   switch (action.type) {
-    case SET_USER_INPUT: {
-      newState = objectAssign({}, state);
+    case SET_NUMBER: {
 
-      const currentInput = state.userInput;
-      const currentValue = state.value;
-      const newInput = action.input;
-
-      const shouldAppendInput = (isNum(currentValue) && isNum(newInput)) || newInput === ".";
-      const shouldAddToStack = (currentValue && isOperator(newInput)) || (isOperator(currentValue) && isNum(newInput));
-      const shouldAssignInput = (isOperator(currentInput) && isOperator(newInput)) || !currentInput
-
-      if (shouldAppendInput) {
-        newState.userInput = currentInput + newInput;
-      } else if (shouldAddToStack) {
-        newState.userInputs = [...newState.userInputs, currentValue];
-        newState.userInput = newInput;
-      } else if (shouldAssignInput) {
-        newState.userInput = newInput;
+      if (state.operator) {
+        newState = {
+          ...state,
+          currentInput: action.payload,
+          inputs: [...state.inputs, state.operator],
+          operator: "",
+        };
+      } else {
+        newState = {
+          ...state,
+          currentInput: state.currentInput + action.payload
+        }
       }
 
-      newState.value = newState.userInput;
-
       return newState;
     }
 
-    case CLEAR:
-      newState = objectAssign({}, state, { userInput: "", value: "0", userInputs: [] });
-
-      return newState;
-
-    case RECALL_MEMORY: {
-      const { memory } = state;
-      newState = objectAssign({}, state, { display: memory, value: memory });
-
-      return newState;
-    }
-
-    case ADD_MEMORY: {
-      const { memory, value } = state;
-      const newMemory = Number(memory) + Number(value);
-
-      newState = objectAssign({}, state, { memory: newMemory.toString() });
-
-      return newState;
-    }
-
-    case SUBTRACT_MEMORY: {
-      const { memory, value } = state;
-      const newMemory = Number(memory) - Number(value);
-
-      newState = objectAssign({}, state, { memory: newMemory.toString() });
-
-      return newState;
-    }
-
-    case CLEAR_MEMORY:
-      newState = objectAssign({}, state, { memory: "0" });
-
-      return newState;
-
-    case CALCULATE: {
-      if (!state.userInputs[0]) {
+    case SET_OPERATOR: {
+      if (state.operator) { // overwrite current operator
+        newState = {
+          ...state,
+          operator: action.payload
+        }
+      } else if (state.currentInput) {
+        newState = {
+          ...state,
+          inputs: [...state.inputs, state.currentInput],
+          operator: action.payload,
+        }
+      } else { // No-Op if no operands have been set.
         return state;
       }
 
-      const newValue = isNum(state.userInput) ?
-        calculate([...state.userInputs, state.userInput]) :
-        calculate(state.userInputs); // disregard trailing operators.
+      return newState;
+    }
 
-      const newState = objectAssign({}, state, { userInput: "", value: newValue, userInputs: [] });
+    case CALCULATE: {
+      let inputs = [...state.inputs]
+
+      if (state.currentInput) {
+        inputs.push(state.currentInput);
+      }
+
+      const result = calculate(inputs);
+      newState = {
+        ...state,
+        inputs: [],
+        currentInput: result,
+        operator: ""
+      }
 
       return newState;
     }
 
+    case RECALL_MEMORY:
+      return {
+        ...state,
+        operator: "",
+        currentInput: state.memory.toString(),
+        inputs: []
+      }
+
+    case ADD_TO_MEMORY:
+      memOp = "+"
+    case SUBTRACT_FROM_MEMORY: // eslint-disable-line no-fallthrough
+      if (state.currentInput) {
+        return {
+          ...state,
+          memory: opMap[memOp || "-"](state.memory, Number(state.currentInput))
+        }
+      } else {
+        return state;
+      }
+
+    case CLEAR_MEMORY:
+      return {
+        ...state,
+        memory: 0
+      }
+
+    case CLEAR_INPUTS:
+      return {
+        ...state,
+        inputs: [],
+        currentInput: "",
+        operator: ""
+      }
     default:
       return state;
   }
+}
+
+// Utils
+const calculate = (inputs) => {
+  ["x", "/", "+", "-"].forEach((operator) => {
+    let opIdx = inputs.indexOf(operator);
+
+    while (opIdx >= 0) {
+      const a = Number(inputs[opIdx - 1]);
+      const b = Number(inputs[opIdx + 1]);
+
+      inputs.splice(opIdx - 1, 3, opMap[operator](a, b));
+
+      opIdx = inputs.indexOf(operator);
+    }
+  })
+
+  return inputs[0];
+}
+
+const opMap = {
+  "+": (a, b) => a + b,
+  "-": (a, b) => a - b,
+  "/": (a, b) => a / b,
+  "x": (a, b) => a * b,
 }

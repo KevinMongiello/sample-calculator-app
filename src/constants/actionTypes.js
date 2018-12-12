@@ -1,12 +1,10 @@
-export const ADD = "ADD";
-export const SUBTRACT = "SUBTRACT";
-export const DIVIDE = "DIVIDE";
-export const MULTIPLY = "MULTIPLY";
-export const CLEAR = "CLEAR";
-export const SET_USER_INPUT = "SET_USER_INPUT";
+export const SET_NUMBER = "SET_NUMBER";
 export const SET_OPERATOR = "SET_OPERATOR";
+export const CLEAR_INPUTS = "CLEAR_INPUTS";
+
 export const RECALL_MEMORY = "RECALL_MEMORY";
 export const CLEAR_MEMORY = "CLEAR_MEMORY";
-export const ADD_MEMORY = "ADD_MEMORY";
-export const SUBTRACT_MEMORY = "SUBTRACT_MEMORY";
+export const ADD_TO_MEMORY = "ADD_TO_MEMORY";
+export const SUBTRACT_FROM_MEMORY = "SUBTRACT_FROM_MEMORY";
+
 export const CALCULATE = "CALCULATE";

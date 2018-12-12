@@ -1,53 +1,10 @@
 import * as types from '../constants/actionTypes';
 
-export function setUserInput(input) {
-  return {
-    type: types.SET_USER_INPUT,
-    input
-  };
-}
-
-export function calculate() {
-  return {
-    type: types.CALCULATE
-  };
-}
-
-// TODO
-// export function add(num1, num2) {
-//   return {
-//     type: types.ADD,
-//     num1,
-//     num2
-//   };
-// }
-
-export function clear() {
-  return {
-    type: types.CLEAR
-  };
-}
-
-export function recallMemory() {
-  return {
-    type: types.RECALL_MEMORY
-  }
-}
-
-export function clearMemory() {
-  return {
-    type: types.CLEAR_MEMORY
-  }
-}
-
-export function addMemory() {
-  return {
-    type: types.ADD_MEMORY
-  }
-}
-
-export function subtractMemory() {
-  return {
-    type: types.SUBTRACT_MEMORY
-  }
-}
+export const setNumber = (payload) => ({ type: types.SET_NUMBER, payload })
+export const setOperator = (payload) => ({ type: types.SET_OPERATOR, payload })
+export const clearInputs = () => ({ type: types.CLEAR_INPUTS })
+export const recallMemory = () => ({ type: types.RECALL_MEMORY })
+export const clearMemory = () => ({ type: types.CLEAR_MEMORY })
+export const addToMemory = () => ({ type: types.ADD_TO_MEMORY })
+export const subtractFromMemory = () => ({ type: types.SUBTRACT_FROM_MEMORY })
+export const calculate = () => ({ type: types.CALCULATE })

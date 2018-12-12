@@ -1,6 +1,6 @@
 export default {
-  userInput: "",
-  value: "0",
-  userInputs: [],
-  memory: "0",
+  inputs: [],
+  currentInput: "",
+  operator: "",
+  memory: 0
 }
